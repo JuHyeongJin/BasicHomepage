@@ -1,6 +1,13 @@
 import React, { useState } from 'react'
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../../../_actions/User_action';
 
 function LoginPage() {
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,6 +22,22 @@ function LoginPage() {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
+
+    let body = {
+      email: email,
+      password: password,
+    }
+
+    dispatch(loginUser(body))
+      .then(response => {
+        if(response.payload.loginSuccess) {
+          navigate('/');
+        } else (
+          alert('Error')
+        )
+      })
+
+    
   }
 
   return (
@@ -24,9 +47,9 @@ function LoginPage() {
     }}>
       <form style={{ display: 'flex', flexDirection: 'column'}}
             onSubmit={onSubmitHandler}>
-        <label>Email</label>
+        <div>Email</div>
         <input type="email" value={email} onChange={onEmailHandler} />
-        <lable>Password</lable>
+        <div>Password</div>
         <input type="password" value={password} onChange={onPasswordHandler} />
         <br/>
         <button>Login</button>

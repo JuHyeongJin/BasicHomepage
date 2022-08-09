@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.min.css';
 import { Provider } from 'react-redux';
 import { applyMiddleware, legacy_createStore as createStore, legacy_createStore } from 'redux';
 import promiseMiddleware from 'redux-promise';

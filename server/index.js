@@ -15,10 +15,13 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-mongoose.connect(config.mongoURI, {
-    useNewUrlParser: true, useUnifiedTopology: true
-}).then(() => console.log('MongoDB Connected...'))
-.catch(error => console.log(error))
+// const MongoConnect = async () => {
+    mongoose.connect(config.mongoURI, {
+        useNewUrlParser: true, useUnifiedTopology: true
+    }).then(() => console.log('MongoDB Connected...'))
+    .catch(error => console.log(error))
+// }
+// MongoConnect()
 
 
 app.get('/', (req, res) => res.send('Hello World!!'))
